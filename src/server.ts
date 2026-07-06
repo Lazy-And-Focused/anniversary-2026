@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import {
   AngularNodeAppEngine,
   createNodeRequestHandler,
@@ -6,6 +8,7 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { DashboardController, DashboardStatsService } from "./api/dashboard";
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -13,6 +16,29 @@ const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 app.use(express.json());
+
+const dashboardController = new DashboardController();
+const dashboardStatsService = new DashboardStatsService();
+
+app.get("/api/dashboard", async (_req, res) => {
+  const data = await dashboardController.execute();
+  res.json({data});
+});
+
+app.get("/api/dashboard/repositories", async (_req, res) => {
+  const repositoriesData = dashboardController.handle(async () => {
+    const repositories = await dashboardStatsService.repositoriesFetcher.fetchRepositories();
+    const repositoriesData = await dashboardStatsService.formatRepositoriesData(repositories);
+    return repositoriesData;
+  }, "repositories-data");
+
+  res.json({data: repositoriesData});
+});
+
+app.get("/api/dashboard/lazy-days", async (_req, res) => {
+  const lazyDays = dashboardController.handle(dashboardStatsService.lazyCalculator.execute, "lazy-days");
+  res.json({data: lazyDays});
+})
 
 app.use(
   express.static(browserDistFolder, {
