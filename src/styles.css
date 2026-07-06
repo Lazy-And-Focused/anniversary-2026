@@ -1,3 +1,155 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+@import 'tailwindcss';
 
-@import "tailwindcss";
+:root {
+  /* Основные фоны */
+  --bg-primary: #0b0b0f;
+  --bg-secondary: #121218;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --border-card: rgba(255, 255, 255, 0.06);
+
+  /* Текст */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b0;
+
+  /* Акцент (градиент) */
+  --accent-start: #f97316;   /* оранжевый */
+  --accent-end: #d946ef;     /* фиолетовый */
+
+  /* Размеры шрифтов (ваши кастомные) */
+  --fs-mini: 0.7rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+
+  /* Тени */
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 12px 48px rgba(249, 115, 22, 0.15);
+
+  /* Скругления */
+  --radius-card: 1.2rem;
+  --radius-btn: 2.5rem;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  header,
+  footer {
+    border-color: var(--border-card) !important;
+    background-color: var(--bg-secondary) !important;
+  }
+
+  footer a {
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+  footer a:hover {
+    color: var(--accent-start);
+  }
+}
+
+@layer components {
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-card);
+    padding: 1.5rem;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-card);
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(249, 115, 22, 0.3);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .btn-gradient {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: var(--radius-btn);
+    background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+    color: #fff;
+    font-weight: 600;
+    font-size: var(--fs-base);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+    text-decoration: none;
+  }
+
+  .btn-gradient:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 32px rgba(249, 115, 22, 0.5);
+  }
+
+  .btn-gradient:active {
+    transform: scale(0.97);
+  }
+
+  .border-gradient {
+    position: relative;
+    border: double 1px transparent;
+    background-image: linear-gradient(var(--bg-secondary), var(--bg-secondary)),
+      linear-gradient(135deg, var(--accent-start), var(--accent-end));
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .animate-fade-up:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .animate-fade-up:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .animate-fade-up:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
