@@ -68,7 +68,7 @@ export class RepositoryStatsFetcher extends GitHubApiClient {
           break;
         }
 
-        const commits = await response.json() as { commit: { committer: { date: string } } }[];
+        const commits = (await response.json()) as { commit: { committer: { date: string } } }[];
         if (commits.length === 0) {
           break;
         }

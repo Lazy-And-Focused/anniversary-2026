@@ -3,9 +3,7 @@ import { RepositoryStatsFetcher } from './repository-stats.fetcher';
 
 /** Класс для расчёта количества «ленивых» дней (дней без коммитов). */
 export class LazyDaysCalculator {
-  public constructor(
-    private readonly repoStatsFetcher: RepositoryStatsFetcher,
-  ) {}
+  public constructor(private readonly repoStatsFetcher: RepositoryStatsFetcher) {}
 
   /**
    * Вычисляет количество дней в указанном промежутке, когда не было ни одного коммита.

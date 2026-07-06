@@ -90,7 +90,7 @@ export class DashboardStatsService {
       commits,
       issues,
       stars,
-      forks
-    }
+      forks,
+    };
   }
 }

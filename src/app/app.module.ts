@@ -8,8 +8,8 @@ import { NgModule } from '@angular/core';
 export const routes: Routes = [
   useLayout({
     layout: Layouts.DefaultLayout,
-    routes: PagesRoutes
-  })
+    routes: PagesRoutes,
+  }),
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
-import type { Routes } from "@angular/router";
+import type { Routes } from '@angular/router';
 
-import { HomeRoute } from "./home";
-import { DashboardRoute } from "./dashboard";
+import { HomeRoute } from './home';
+import { DashboardRoute } from './dashboard';
 
 export const PagesRoutes: Routes = [HomeRoute, DashboardRoute];

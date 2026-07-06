@@ -15,8 +15,8 @@
   --text-secondary: #a0a0b0;
 
   /* Акцент (градиент) */
-  --accent-start: #f97316;   /* оранжевый */
-  --accent-end: #d946ef;     /* фиолетовый */
+  --accent-start: #f97316; /* оранжевый */
+  --accent-end: #d946ef; /* фиолетовый */
 
   --fs-h1: 36px;
   --fs-h2: 32px;
@@ -40,7 +40,7 @@
 }
 
 @layer base {
-  @import "./app/styles/reset.css";
+  @import './app/styles/reset.css';
 
   html {
     scroll-behavior: smooth;
@@ -49,7 +49,11 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      sans-serif;
     line-height: 1.6;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;

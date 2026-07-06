@@ -38,7 +38,7 @@ export type OrganizationMember = {
   type: string;
   /** Является ли пользователь администратором сайта */
   site_admin: boolean;
-}
+};
 
 /**
  * Сокращённая информация о репозитории для статистики.
