@@ -13,6 +13,6 @@ export class ProjectCard {
   public constructor() {}
 
   public formatDate(date: string) {
-    return new Date(date).toLocaleString("ru-ru");
+    return new Date(date).toLocaleString('ru-ru');
   }
 }

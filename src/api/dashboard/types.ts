@@ -171,7 +171,18 @@ export interface Repository {
   security_and_analysis?: RepositorySecurityAndAnalysis; // опционально
 }
 
-export type LightweightRepository = Pick<Repository, "disabled"|"created_at"|"updated_at"|"name"|"full_name"|"description"|"archived"|"homepage"|"html_url">;
+export type LightweightRepository = Pick<
+  Repository,
+  | 'disabled'
+  | 'created_at'
+  | 'updated_at'
+  | 'name'
+  | 'full_name'
+  | 'description'
+  | 'archived'
+  | 'homepage'
+  | 'html_url'
+>;
 
 /**
  * Минимальный набор полей, который вы используете для статистики.
@@ -191,4 +202,4 @@ export type RepositoriesData = {
   issues: number;
   stars: number;
   forks: number;
-}
+};

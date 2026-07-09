@@ -1,16 +1,13 @@
-import type { DashboardStats, RepositoriesData } from "@/api/dashboard";
+import type { DashboardStats, RepositoriesData } from '@/api/dashboard';
 
-import { Injectable, TransferState } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable, TransferState } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { BaseService } from "./base.service";
+import { BaseService } from './base.service';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class DashboardService extends BaseService {
-  public constructor(
-    transferState: TransferState,
-    http: HttpClient
-  ) {
+  public constructor(transferState: TransferState, http: HttpClient) {
     super(transferState, http);
   }
 
@@ -19,14 +16,14 @@ export class DashboardService extends BaseService {
   }
 
   public getDashboard() {
-    return this.get<DashboardStats>("/api/dashboard");
+    return this.get<DashboardStats>('/api/dashboard');
   }
 
   public getRepositories() {
-    return this.get<RepositoriesData>("/api/dashboard/repositories");
+    return this.get<RepositoriesData>('/api/dashboard/repositories');
   }
 
   public getLazyDays() {
-    return this.get<number>("/api/dashboard/lazy-days");
+    return this.get<number>('/api/dashboard/lazy-days');
   }
 }

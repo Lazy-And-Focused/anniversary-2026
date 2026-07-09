@@ -1,5 +1,5 @@
-import NodeCache from "node-cache";
-import { cache as globalCache } from "./cache";
+import NodeCache from 'node-cache';
+import { cache as globalCache } from './cache';
 
 export class BaseContoller {
   public constructor(protected readonly cache: NodeCache = globalCache) {}

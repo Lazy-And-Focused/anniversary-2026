@@ -1,4 +1,4 @@
-import { BaseContoller } from "../base.controller";
+import { BaseContoller } from '../base.controller';
 
 export class GithubContoller extends BaseContoller {
   public constructor() {

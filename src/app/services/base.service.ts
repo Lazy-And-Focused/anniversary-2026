@@ -1,11 +1,11 @@
-import { HttpClient } from "@angular/common/http";
-import { makeStateKey, TransferState } from "@angular/core";
-import { from, map, of } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { makeStateKey, TransferState } from '@angular/core';
+import { from, map, of } from 'rxjs';
 
 export class BaseService {
   public constructor(
     protected readonly transferState: TransferState,
-    protected readonly http: HttpClient
+    protected readonly http: HttpClient,
   ) {}
 
   protected get<T>(path: string) {
@@ -15,7 +15,7 @@ export class BaseService {
       return observale;
     }
 
-    const json = this.http.get<{ data: T }>(path, { responseType: "json" });
+    const json = this.http.get<{ data: T }>(path, { responseType: 'json' });
     json.subscribe(({ data }) => {
       this.transferState.set(key, data);
     });
