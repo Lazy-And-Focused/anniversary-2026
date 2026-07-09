@@ -1,0 +1,12 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full max-w-7xl">
+  @for (repository of repositories; track repository.full_name) {
+    <project-card
+      [repository]="repository"
+      class="animate-fade-up"
+    />
+  } @empty {
+    <p class="col-span-full text-center text-(--text-secondary)">
+      Загрузка...
+    </p>
+  }
+</div>

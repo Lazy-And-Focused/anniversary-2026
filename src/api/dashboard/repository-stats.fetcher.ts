@@ -1,4 +1,4 @@
-import type { RepositorySummary } from './types';
+import type { Repository } from './types';
 import { GitHubApiClient } from './github-api.client';
 import { ORGANIZATION, SINCE_ISO, UNTIL_ISO } from './constants';
 
@@ -13,7 +13,7 @@ export class RepositoryStatsFetcher extends GitHubApiClient {
   }
 
   /** Возвращает список репозиториев с количеством звёзд и форков. */
-  public async fetchRepositories(): Promise<RepositorySummary[]> {
+  public async fetchRepositories(): Promise<Repository[]> {
     const url = `${this.baseUrl}/orgs/${ORGANIZATION}/repos?per_page=100`;
     return this.fetch(url);
   }

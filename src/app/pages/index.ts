@@ -1,6 +1,6 @@
 import type { Routes } from '@angular/router';
 
 import { HomeRoute } from './home';
-import { DashboardRoute } from './dashboard';
+import { ProjectsRoute } from './projects';
 
-export const PagesRoutes: Routes = [HomeRoute, DashboardRoute];
+export const PagesRoutes: Routes = [HomeRoute, ProjectsRoute];

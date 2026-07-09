@@ -1,16 +1,18 @@
 import type { DashboardStats, RepositoriesData } from "@/api/dashboard";
 
-import { Injectable, makeStateKey, TransferState } from "@angular/core";
+import { Injectable, TransferState } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-import { from, map, of } from "rxjs";
+import { BaseService } from "./base.service";
 
 @Injectable({ providedIn: "root" })
-export class DashboardService {
+export class DashboardService extends BaseService {
   public constructor(
-    private readonly transferState: TransferState,
-    private readonly http: HttpClient
-  ) {}
+    transferState: TransferState,
+    http: HttpClient
+  ) {
+    super(transferState, http);
+  }
 
   public execute() {
     return this.getDashboard();
@@ -26,36 +28,5 @@ export class DashboardService {
 
   public getLazyDays() {
     return this.get<number>("/api/dashboard/lazy-days");
-  }
-
-  private get<T>(path: string) {
-    const key = this.makeStateKey<T>(path);
-    const observale = this.getFromState<T>(path);
-    if (observale) {
-      return observale;
-    }
-
-    const json = this.http.get<{ data: T }>(path, { responseType: "json" });
-    json.subscribe(({ data }) => {
-      this.transferState.set(key, data);
-    });
-
-    const data = from(json).pipe(map(({ data }) => data));
-    return data;
-  }
-
-  private getFromState<T>(path: string) {
-    const key = this.makeStateKey<T>(path);
-    const state = this.transferState.get<T | null>(key, null);
-    if (!state) {
-      return null;
-    }
-
-    this.transferState.remove(key);
-    return of(state);
-  }
-
-  private makeStateKey<T>(path: string) {
-    return makeStateKey<T>(path);
   }
 }
