@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: '../../styles/base-host.style.css',
   templateUrl: './dashboard.html',
 })
-export class Dashboard {}
+export class Dashboard {
+  // private readonly service = inject(DashboardService);
+
+  public constructor() {}
+}

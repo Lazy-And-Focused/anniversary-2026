@@ -36,10 +36,11 @@ app.get('/api/dashboard/repositories', async (_req, res) => {
 });
 
 app.get('/api/dashboard/lazy-days', async (_req, res) => {
-  const lazyDays = dashboardController.handle(
-    dashboardStatsService.lazyCalculator.execute,
+  const lazyDays = await dashboardController.handle(
+    () => dashboardStatsService.lazyCalculator.execute(),
     'lazy-days',
   );
+
   res.json({ data: lazyDays });
 });
 

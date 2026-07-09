@@ -29,7 +29,7 @@ export class DashboardStatsService {
   public constructor() {
     this.repositoriesFetcher = new RepositoryStatsFetcher();
     this.teamFetcher = new TeamFetcher();
-    this.lazyCalculator = new LazyDaysCalculator(this.repositoriesFetcher);
+    this.lazyCalculator = new LazyDaysCalculator();
   }
 
   /**

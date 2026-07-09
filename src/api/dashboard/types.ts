@@ -48,3 +48,13 @@ export interface RepositorySummary {
   stargazers_count: number;
   forks_count: number;
 }
+
+export type RepositoriesData = {
+  repositories: number;
+  coffeeCups: number;
+  pullRequests: number;
+  commits: number;
+  issues: number;
+  stars: number;
+  forks: number;
+}

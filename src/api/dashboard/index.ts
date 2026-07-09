@@ -4,3 +4,4 @@ export * from './team.fetcher';
 export * from './lazy-days.calculator';
 export * from './dashboard-stats.service';
 export * from './dashboard.controller';
+export * from "./types";
