@@ -1,0 +1,48 @@
+<div class="flex flex-col flex-1 items-center justify-center gap-4 px-4 py-8">
+  <h3>{{ headerText() }}</h3>
+
+  @let questions = remainQuestions();
+  @let question = currentQuestion();
+  <div class="flex flex-col max-w-120 gap-2 items-center">
+    @let explanation = explanationSignal();
+    @let yourAnswer = answer();
+    @if (explanation && yourAnswer) {
+      <div class="flex flex-col items-center">
+        <span>Ваш ответ: {{ yourAnswer }}</span>
+        <span>Правильный ответ: {{ question?.answer }}</span>
+      </div>
+
+      @let clearedExplanation = clearExplanation(explanation);
+      <p class="text-center">
+        {{ clearedExplanation.text }}
+      </p>
+      <a target="_blank" rel="noopener noreferrer" [href]="clearedExplanation.href">
+        <laf-button [mini]="true">Подробнее</laf-button>
+      </a>
+    }
+  </div>
+
+  @if (questions.length === 0) {
+    <div class="flex flex-col items-center">
+      @let myRank = rank();
+      <span>Количество очков: {{ scores() }}</span>
+      <span>Ваш ранг: {{ myRank.name }}</span>
+      <span class="text-center">{{ myRank.description }}</span>
+    </div>
+  } @else {
+    @if (question && !replied()) {
+      <div class="flex flex-col gap-2 items-center justify-center">
+        @let options = shuffle(question.options);
+        @for (option of options; track option) {
+          <laf-button [mini]="true" (clicked)="handleOptionClick(option)">
+            {{ option }}
+          </laf-button>
+        }
+      </div>
+    }
+
+    <laf-button (clicked)="nextQuestion()">
+      Далее
+    </laf-button>
+  }
+</div>

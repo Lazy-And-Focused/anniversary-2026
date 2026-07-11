@@ -1,5 +1,9 @@
 <button
-  class="inline-flex items-center justify-center gap-2 py-4 px-8 border-none rounded-full bg-linear-to-br from-accent-start to-accent-end text-white font-semibold text-base cursor-pointer no-underline transition-all duration-300 ease-in-out shadow-(--shadow-button) hover:scale-[1.05] hover:shadow-(--shadow-hover) active:scale-[0.95]"
+  [class]="`
+    ${mini ? 'py-2 px-4' : 'py-4 px-8 '}
+    inline-flex items-center justify-center gap-2 border-none rounded-full bg-linear-to-br from-accent-start to-accent-end text-white font-semibold text-base cursor-pointer no-underline transition-all duration-300 ease-in-out shadow-(--shadow-button) hover:scale-[1.05] hover:shadow-(--shadow-hover) active:scale-[0.95]
+  `"
+  (click)="onClick($event)"
 >
   <ng-content />
 </button>
