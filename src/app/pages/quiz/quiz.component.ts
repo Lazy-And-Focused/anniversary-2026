@@ -1,10 +1,7 @@
 import { Explanation, Question, QUIZ } from '@/app/constants';
 import { Component, computed, signal } from '@angular/core';
 
-import { Random } from 'random-js';
 import { LafButton } from '@/app/components/laf-button';
-
-const random = new Random();
 
 @Component({
   selector: 'app-quiz',
@@ -105,6 +102,6 @@ export class Quiz {
   }
 
   protected shuffle<T>(array: T[]) {
-    return random.shuffle(array);
+    return array.sort(() => Math.random() - 0.5);
   }
 }

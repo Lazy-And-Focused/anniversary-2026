@@ -36,7 +36,6 @@
     "@ng-icons/heroicons": "^33.3.0",
     "express": "^5.1.0",
     "node-cache": "^5.1.2",
-    "random-js": "^2.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
