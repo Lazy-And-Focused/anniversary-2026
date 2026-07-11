@@ -1,8 +1,8 @@
 import { Explanation, Question, QUIZ } from '@/app/constants';
 import { Component, computed, signal } from '@angular/core';
 
-import { Random } from "random-js";
-import { LafButton } from "@/app/components/laf-button";
+import { Random } from 'random-js';
+import { LafButton } from '@/app/components/laf-button';
 
 const random = new Random();
 
@@ -27,7 +27,7 @@ export class Quiz {
 
   protected rank = computed(() => {
     const scores = this.scores();
-    const ranks = this.quiz.ranks.filter(rank => {
+    const ranks = this.quiz.ranks.filter((rank) => {
       if (rank.percens === false) {
         return rank.lessThan >= scores && rank.moreThan < scores;
       }
@@ -39,29 +39,29 @@ export class Quiz {
     });
 
     return ranks[0];
-  })
+  });
 
   protected clearExplanation(explanation: Explanation) {
-    if (typeof explanation === "string") {
+    if (typeof explanation === 'string') {
       return {
         text: explanation,
-        href: null
-      }
+        href: null,
+      };
     }
 
     return {
       text: explanation.lazy,
-      href: explanation.detailedLink
-    }
+      href: explanation.detailedLink,
+    };
   }
 
   protected handleOptionClick(option: string) {
     const question = this.currentQuestion();
     if (!question) {
-      throw new Error("idk");
+      throw new Error('idk');
     }
 
-    const score = question.answer === option ? "correct" : "wrong";
+    const score = question.answer === option ? 'correct' : 'wrong';
     const scores = this.scores() + question.scores[score];
 
     this.explanationSignal.set(question.explanation);
@@ -73,12 +73,12 @@ export class Quiz {
   protected headerText = computed(() => {
     const questionId = this.currentQuestionId();
     if (!questionId) {
-      return "Добро пожаловать в квиз по LAF";
+      return 'Добро пожаловать в квиз по LAF';
     }
 
     const question = this.quiz.questions[questionId];
     return question.question;
-  })
+  });
 
   protected nextQuestion() {
     this.replied.set(false);
@@ -96,7 +96,7 @@ export class Quiz {
 
   protected setNewQuestions(questions: string[], question?: string) {
     const newQuestions = this.shuffle(questions);
-    const filteredNewQuestions = newQuestions.filter(newQuestion => newQuestion !== question);
+    const filteredNewQuestions = newQuestions.filter((newQuestion) => newQuestion !== question);
 
     const newCurrent = filteredNewQuestions[0];
     this.currentQuestionId.set(newCurrent);

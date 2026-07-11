@@ -1,1 +1,1 @@
-export * from "./quiz.routes";
+export * from './quiz.routes';
